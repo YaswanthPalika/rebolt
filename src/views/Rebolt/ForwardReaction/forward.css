@@ -1,0 +1,11 @@
+span{
+    font-weight: bold;
+}
+.react-bob{
+    margin-left: 10%;
+    display: flex;
+}
+.reactant-image{
+    width: 250px;
+    transform: rotate(270deg);
+}
