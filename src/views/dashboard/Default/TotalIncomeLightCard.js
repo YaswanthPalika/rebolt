@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { useTheme, styled } from '@mui/material/styles';
-import { Avatar, Box, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
+import { Avatar, Box,Grid, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
@@ -48,43 +48,36 @@ const TotalIncomeLightCard = ({ isLoading }) => {
                 <TotalIncomeCard />
             ) : (
                 <CardWrapper border={false} content={false}>
-                    <Box sx={{ p: 2 }}>
-                        <List sx={{ py: 0 }}>
-                            <ListItem alignItems="center" disableGutters sx={{ py: 0 }}>
-                                <ListItemAvatar>
-                                    <Avatar
-                                        variant="rounded"
-                                        sx={{
-                                            ...theme.typography.commonAvatar,
-                                            ...theme.typography.largeAvatar,
-                                            backgroundColor: theme.palette.warning.light,
-                                            color: theme.palette.warning.dark
-                                        }}
-                                    >
-                                        <StorefrontTwoToneIcon fontSize="inherit" />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText
-                                    sx={{
-                                        py: 0,
-                                        mt: 0.45,
-                                        mb: 0.45
-                                    }}
-                                    primary={<Typography variant="h4">$203k</Typography>}
-                                    secondary={
-                                        <Typography
-                                            variant="subtitle2"
-                                            sx={{
-                                                color: theme.palette.grey[500],
-                                                mt: 0.5
-                                            }}
-                                        >
-                                            Total Income
+                    <Box sx={{ p: 2.25 }}>
+                        <Grid container direction="column">
+                            <Grid item>
+                                <Grid container justifyContent="space-between">
+
+
+                                </Grid>
+                            </Grid>
+                            <Grid item>
+                                <Grid container alignItems="center">
+                                    <Grid item>
+                                        <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                        FORWARD REACTION
                                         </Typography>
-                                    }
-                                />
-                            </ListItem>
-                        </List>
+                                    </Grid>
+
+                                </Grid>
+                            </Grid>
+                            <Grid className="rebolt-box" item sx={{ mb: 1.25 }}>
+                                <Typography
+                                    sx={{
+                                        fontSize: '1rem',
+                                        fontWeight: 500,
+                                        color: theme.palette.secondary[200]
+                                    }}
+                                >
+                                   Input your starting materials and check the list of possible products. Also, be sure by checking the pathways proposed by the Retrosynthetic analysis and Atom Mapping of the specified reaction.
+                                </Typography>
+                                </Grid>
+                        </Grid>
                     </Box>
                 </CardWrapper>
             )}

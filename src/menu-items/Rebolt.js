@@ -30,7 +30,7 @@ const pages = {
                         },
                         {
                             id: 'ForwardReaction',
-                            title: 'ForwardReaction',
+                            title: 'Forward Reaction',
                             type: 'item',
                             url: '/Rebolt/ForwardReaction',
                             breadcrumbs: false

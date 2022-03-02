@@ -6,14 +6,21 @@
 }
 
 .reference-card{
+    padding: 7%;
+    width: 150px;
+    margin-top: 30px;
+    border: solid grey 2px;
+    border-radius: 20px;
+}
+.r-card{
     text-align: center;
     font-size: 100%;
     border-radius: 20px;
     padding: 5%;
     width: 150px;
-    margin-top: 30px;
+    border: 20px;
+    
 }
-
 
 .copy-button{
     
@@ -41,4 +48,8 @@ span{
 .tree-img{
     width: 125px;
     height: 100px;
+}
+.experiment-table{
+    background-image: url('https://res.cloudinary.com/doaejwdmk/image/upload/v1646156842/ezgif.com-gif-maker_1_grin8b.gif');
+    color: yellowgreen;
 }

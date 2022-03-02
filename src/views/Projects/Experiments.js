@@ -3,6 +3,7 @@ import { Link,history,withRouter} from 'react-router-dom';
 import {useParams} from "react-router-dom";
 import {BallTriangle} from 'react-loader-spinner'
 import ArrowBack from '@mui/icons-material/ArrowBack';
+import {useNavigate} from 'react-router-dom'
 //mui imports
 import { Add, Delete, Edit } from '@mui/icons-material';
 import { Fab, IconButton, Paper, Table, TableBody, tableCellClasses, TableContainer } from '@mui/material';
@@ -12,7 +13,7 @@ import { styled } from '@mui/material/styles';
 import { Navigate } from 'react-router';
 
 import { db , uid } from 'index';
-import { doc, onSnapshot, collection, getDocs,deleteDoc ,query, where} from '@firebase/firestore';
+import { doc, onSnapshot, collection,updateDoc, getDocs,deleteDoc ,query, where} from '@firebase/firestore';
 import './experiment.css'
 
 var template = "retrosynthesis"
@@ -44,8 +45,13 @@ const array = ['retrosynthesis','retrosynthesis_tf','forward_reaction']
 const Experiments = () => {
     var newExperiment = '/Rebolt/RetrosynthesisInput'
     //const history = useHistory();
+    var navigate = useNavigate()
     const { pid } = useParams();
     console.log(pid)
+    const [editBox,setEditBox] = useState(false)
+    const [name,setName] = useState('')
+    const [desc,setDesc] = useState('')
+    const [eid,setEid] = useState()
     const [experimentsdata, setexperimentsdata] = useState([])
     const [experimentType, setExperimentType] = useState(array[0])
     const [newExp,setNewExp] = useState()
@@ -88,7 +94,7 @@ const Experiments = () => {
         console.log("yes")
         console.log(template,uid)
         setLoader(true)
-        const q = query(collection(db, template))
+        const q = query(collection(db, template),where("uid", "==", uid ),where("project_id","==",pid.trim()))
         // where("uid", "==", uid ),where("pid","==",pid.trim())
         const experiments = []
         await getDocs(q,).then((snapshot) => {
@@ -118,7 +124,7 @@ const Experiments = () => {
             experimentsdata.map((data, index) => {
                 return (
                     <>
-                        <StyledTableRow >
+                        <StyledTableRow className='experiment-table'>
                             <StyledTableCell align='left'>{index+1}</StyledTableCell>
                             <StyledTableCell align='left'>{data.expname}</StyledTableCell>
                             <StyledTableCell align='left'>{data.description}</StyledTableCell>
@@ -126,12 +132,37 @@ const Experiments = () => {
                                     {data.status === 'completed' ? "completed" : "pending"}
                             </StyledTableCell>
                             <StyledTableCell align='left'><Link to={`/Rebolt/${template}/${data.id}`}>View</Link></StyledTableCell>
-                            <StyledTableCell align='left'><IconButton onClick={() => deleteExperiment(data.id)}><Delete /></IconButton></StyledTableCell>
+                            <StyledTableCell align='left'>
+                                <IconButton 
+                                onClick={()=> editProject(data.expname,data.description,data.id)}
+                                ><Edit /></IconButton>
+                                <IconButton onClick={() => deleteExperiment(data.id)}><Delete /></IconButton>
+                            </StyledTableCell>
                         </StyledTableRow>
                     </>
                 )
             })
         )
+
+        //edit experiment
+        const editProject = (name,desc,eid) => {
+            console.log(name,desc)
+            setName(name)
+            setDesc(desc)
+            setEid(eid)
+            setEditBox(true)
+          }
+
+          const onEditProject =async () => {
+            const projectUpdateRef= doc(db, template, eid);
+            updateDoc(projectUpdateRef, {
+                expname : name,
+                description:desc,
+             });
+             setEditBox(false)
+             getexperiments()
+             getexperiments()
+           }
 
     return (
         <>
@@ -141,6 +172,7 @@ const Experiments = () => {
                     <Fab variant="extended" sx={{ mb: 2 }} onClick={()=>{
                         //history.push("/dashboard")
                         //history.back()
+                        navigate(-1)
                     }} style={{marginRight:'10px'}}>
                         <ArrowBack />
                     </Fab>
@@ -240,6 +272,19 @@ const Experiments = () => {
         </DialogActions>
       </Dialog>
 
+      <Dialog open={editBox} onClose={()=>{setEditBox(false)}} >
+        <DialogContent>
+          <DialogContentText>
+            Edit Experiment Data
+          </DialogContentText>
+           <p>Experiment name : <input value={name} onChange={e=>{setName(e.target.value)}}/></p>
+           <p>Experiment description : <input value={desc} onChange={e=>{setDesc(e.target.value)}}/></p>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={()=>setEditBox(false)}>Close</Button>
+          <Button onClick={()=>onEditProject()}>edit</Button>
+        </DialogActions>
+      </Dialog>
 
         </>
     );

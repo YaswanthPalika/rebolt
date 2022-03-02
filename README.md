@@ -1,1 +1,3 @@
 # rebolt
+
+--openssl-legacy-provider 

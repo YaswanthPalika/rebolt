@@ -17,13 +17,13 @@ import { db } from 'index';
 import { doc ,query, getDoc} from '@firebase/firestore';
 //third party imports
 import { TreevizReact } from 'treeviz-react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router-dom';
 import MyComponent from '../sample';
 
 var arrayData = []
 
   const TemplateFreeTree = () => {
-
+    var navigate = useNavigate()
     const [hid,changeHid] = React.useState([])
     const [open2,setopen2] = React.useState(false)
     const [open3,setopen3] = React.useState(false)
@@ -81,6 +81,7 @@ var arrayData = []
         title:each.title,
         usptoLink:each.uspto_link,
         time:each.time,
+        buildingBlock:each.building_block,
         buildingBlockPath:each.building_block_path,
         score:each.score,
         rxnScore:each.rxn_score,
@@ -147,7 +148,7 @@ var arrayData = []
                     margin-top:-30px;
                     padding:5px;border-radius:15px;box-shadow:2px spx black;box-shadow:4px 4px 5px grey;">
                         <img class="tree-img" src='data:image/jpeg;base64, ${node.data.smileB64}' hid=${node.data.id}/>
-                        <p hid=${node.data.id}></p>
+                        
                     </div>
                     `
             }
@@ -158,7 +159,7 @@ var arrayData = []
         }
         onNodeClick={(node) => {
           
-          var nid = new DOMParser().parseFromString(node.srcElement.outerHTML, 'text/html').body.getElementsByTagName("p")[0].getAttribute('hid');
+          var nid = new DOMParser().parseFromString(node.srcElement.outerHTML, 'text/html').body.getElementsByTagName("img")[0].getAttribute('hid');
           nid = parseInt(nid)
          // console.log(data1[parseInt(nid)])
          // console.log(data1[nid].building_block)
@@ -199,6 +200,7 @@ var arrayData = []
     <Fab variant="extended" sx={{ mb: 2 }} onClick={()=>{
                         //history.push("/dashboard")
                         //history.back()
+                        navigate(-1)
                     }} style={{margin:'10px'}}>
                         <ArrowBack />
     </Fab>
@@ -207,30 +209,6 @@ var arrayData = []
      {isLoading && <LoaderBox />}
      {!isLoading && <TreeOutput />}
      
-      <Dialog
-        sx={{ '& .MuiDialog-paper': { maxWidth: '90vw', maxHeight: '90vh' } }}
-        minWidth="xs"
-        open={open2}
-      >
-        <DialogTitle><h1>Reference</h1></DialogTitle>
-        <DialogContent dividers>
-            <div>
-            <p><span>usid </span> : {hid.usid}</p>
-              <p><span>Score </span> : {hid.score}</p>
-              <p><span>Fwd Score </span> : {hid.fwdScore}</p>
-              <p><span>USPTO Link</span> : <a href={hid.usptoLink}>{hid.usptoLink}</a></p>
-              <p><span>title</span>  : {hid.title}</p>
-              <p><span>Procedure</span>  : {hid.procedure}</p>
-              <p><span>Time</span>  : {hid.time}</p>
-            </div>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={closeReference}>
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
-
       <Dialog
         sx={{ '& .MuiDialog-paper': { maxWidth: '90vw', maxHeight: '90vh' } }}
         minWidth="xs"
@@ -250,7 +228,7 @@ var arrayData = []
             navigator.clipboard.writeText(hid.smile);
             alert("Copied the text ");
           }}>click here to copy Smiles</button>
-          {hid.buildingblock && <p><a rel="noreferrer" 
+          {hid.buildingBlock && <p><a rel="noreferrer" 
           target="_blank" href={hid.buildingBlockPath}>buy chemical</a></p>}
         </DialogContent>
         <DialogActions>

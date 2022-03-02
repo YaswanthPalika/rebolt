@@ -12,13 +12,14 @@ import ArrowBack from '@mui/icons-material/ArrowBack';
 import { Card, CardContent, CardHeader, Divider, Grid ,Fab} from '@mui/material';
 import { useParams } from 'react-router-dom';
 import MainCard from 'ui-component/cards/MainCard';
+import {useNavigate} from 'react-router-dom'
 //firebase imports
 import { db } from 'index';
 import { onSnapshot, query, where, collection, doc, getDoc } from '@firebase/firestore';
 import './forward.css'
 
 export default function ForwardReactionOutput() {
-
+    var navigate = useNavigate()
     const [cardoutputdata, setcardoutputdata] = React.useState([])
   const [arrayData, setArrayData] = React.useState([])
   const [isLoading,setLoader] = React.useState(false)
@@ -99,6 +100,7 @@ export default function ForwardReactionOutput() {
                     <Fab variant="extended" sx={{ mb: 2 }} onClick={()=>{
                         //history.push("/dashboard")
                         //history.back()
+                        navigate(-1)
                     }} style={{margin:'10px'}}>
                         <ArrowBack />
                     </Fab>

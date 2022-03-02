@@ -83,6 +83,7 @@ const MainLayout = () => {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
+            
             {/* header */}
             <AppBar
                 enableColorOnDark
@@ -95,6 +96,7 @@ const MainLayout = () => {
                 }}
             >   
                 <Toolbar>
+                
                     <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
                 </Toolbar>
             </AppBar>

@@ -11,6 +11,8 @@ import Chart from 'react-apexcharts';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonTotalOrderCard from 'ui-component/cards/Skeleton/EarningCard';
+import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
+
 
 import ChartDataMonth from './chart-data/total-order-month-line-chart';
 import ChartDataYear from './chart-data/total-order-year-line-chart';
@@ -81,87 +83,38 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                         <Grid container direction="column">
                             <Grid item>
                                 <Grid container justifyContent="space-between">
-                                    <Grid item>
-                                        <Avatar
-                                            variant="rounded"
-                                            sx={{
-                                                ...theme.typography.commonAvatar,
-                                                ...theme.typography.largeAvatar,
-                                                backgroundColor: theme.palette.primary[800],
-                                                color: '#fff',
-                                                mt: 1
-                                            }}
-                                        >
-                                            <LocalMallOutlinedIcon fontSize="inherit" />
-                                        </Avatar>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button
-                                            disableElevation
-                                            variant={timeValue ? 'contained' : 'text'}
-                                            size="small"
-                                            sx={{ color: 'inherit' }}
-                                            onClick={(e) => handleChangeTime(e, true)}
-                                        >
-                                            Month
-                                        </Button>
-                                        <Button
-                                            disableElevation
-                                            variant={!timeValue ? 'contained' : 'text'}
-                                            size="small"
-                                            sx={{ color: 'inherit' }}
-                                            onClick={(e) => handleChangeTime(e, false)}
-                                        >
-                                            Year
-                                        </Button>
-                                    </Grid>
+
+
                                 </Grid>
                             </Grid>
-                            <Grid item sx={{ mb: 0.75 }}>
+                            <Grid item>
                                 <Grid container alignItems="center">
-                                    <Grid item xs={6}>
-                                        <Grid container alignItems="center">
-                                            <Grid item>
-                                                {timeValue ? (
-                                                    <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                        $108
-                                                    </Typography>
-                                                ) : (
-                                                    <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                        $961
-                                                    </Typography>
-                                                )}
-                                            </Grid>
-                                            <Grid item>
-                                                <Avatar
-                                                    sx={{
-                                                        ...theme.typography.smallAvatar,
-                                                        cursor: 'pointer',
-                                                        backgroundColor: theme.palette.primary[200],
-                                                        color: theme.palette.primary.dark
-                                                    }}
-                                                >
-                                                    <ArrowDownwardIcon fontSize="inherit" sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }} />
-                                                </Avatar>
-                                            </Grid>
-                                            <Grid item xs={12}>
-                                                <Typography
-                                                    sx={{
-                                                        fontSize: '1rem',
-                                                        fontWeight: 500,
-                                                        color: theme.palette.primary[200]
-                                                    }}
-                                                >
-                                                    Total Order
-                                                </Typography>
-                                            </Grid>
-                                        </Grid>
+                                    <Grid item>
+                                        <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                        RETROSYNTHESIS
+                                        </Typography>
                                     </Grid>
-                                    <Grid item xs={6}>
-                                        {timeValue ? <Chart {...ChartDataMonth} /> : <Chart {...ChartDataYear} />}
-                                    </Grid>
+
                                 </Grid>
                             </Grid>
+                            <Grid className="rebolt-box" item sx={{ mb: 1.25 }}>
+                                <Typography
+                                    sx={{
+                                        fontSize: '1rem',
+                                        fontWeight: 500,
+                                        color: theme.palette.secondary[200]
+                                    }}
+                                >
+                                   Input your complex target molecule and spot the synthesis route ending with Simpler and commercially available starting materials within no time.<br/>
+
+Choose and Design your desired pathways based on various customized filters available.<br/>
+
+Template-based Retrosynthesis - locates a reliable template from a huge set of templates, which are molecular subgraph patterns to your target, and proposes the routes accordingly.<br/>
+
+Template Free Retrosynthesis- bypass templates by learning a direct mapping of the product to reactants.<br/>
+
+                                </Typography>
+                                </Grid>
                         </Grid>
                     </Box>
                 </CardWrapper>

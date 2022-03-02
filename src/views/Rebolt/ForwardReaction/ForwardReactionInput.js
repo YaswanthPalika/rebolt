@@ -141,6 +141,8 @@ const ShadowBox = ({ shadow }, props) => {
     setsolventKecther(true)
   }
   const handleprojectid=(event)=>{
+    console.log("yes")
+    console.log(event.target.value)
     setprojectid(event.target.value)
   }
   
@@ -166,7 +168,7 @@ const ShadowBox = ({ shadow }, props) => {
         target_mol: targetmol,
         intermediates: solvent,
         uid: uid,
-        pid:projectid,
+        project_id:projectid,
       }).then(res => axios.post('https://rebolt-api.azurewebsites.net/v1/retrosynthesis/forward_rxn', {
         "experiment_id": res.id,
         "target_mol": targetmol,
@@ -176,8 +178,9 @@ const ShadowBox = ({ shadow }, props) => {
       .then(()=>{
         setsolvent("")
         setdesc("")
-        console.log("yes working")
+        alert("experiment submitted succesfully!")
       })
+      .catch(alert("error occured, please try again!"))
       handleclose()
   }
 
@@ -219,11 +222,11 @@ const ShadowBox = ({ shadow }, props) => {
             />
           </Grid>
           <Grid item xl={12} xs={12}>
-            <TextField style={{ width: '100%' }} label="Description"
+            <TextField style={{ width: '100%' }} label="Description(optional)"
               name="expname"
               onChange={(e) => setdesc(e.target.value)}
               value={desc}
-              required
+              
               margin="normal"
               inputProps={{ style: { fontSize: 15 } }}
             />
@@ -287,15 +290,21 @@ const ShadowBox = ({ shadow }, props) => {
             name="ringtone"
 
           >
-            {projectsData.map((data) => (
-              <FormControlLabel
-                value={data.id}
-                key={data.id}
-                control={<Radio />}
-                label={data.projectname}
-                onClick={handleprojectid}
-              />
-            ))}
+            {projectsData.map((data)=>(
+                        <div style={{display:'flex'}}>
+                        <FormControlLabel
+                            value={data.id}
+                            key={data.id}
+                            control={<Radio />}
+                            label=""
+                            onClick={e=>{
+                                console.log(e.target.value)
+                                setprojectid(e.target.value)
+                            }}
+                        />
+                        <p>{data.projectname}</p>
+                    </div>
+                      ))}
           </RadioGroup>
         </DialogContent>
         <DialogActions>

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import {BallTriangle} from 'react-loader-spinner'
 import ArrowBack from '@mui/icons-material/ArrowBack';
+import { useNavigate } from 'react-router-dom';
 // material-ui
 import { Button, Card, CardActions, CardContent, CardHeader, CardMedia, Grid,Fab } from '@mui/material';
 import { Typography } from '@mui/material';
@@ -17,6 +18,7 @@ import { onSnapshot, query, where, collection, doc, getDoc } from '@firebase/fir
 
 
 const RetrosynthesisOutput = () => {
+  var navigate = useNavigate()
   const [cardoutputdata, setcardoutputdata] = React.useState([])
   const [arrayKeys, setArrayKeys] = React.useState([])
   const [isLoading,setLoader] = React.useState(false)
@@ -71,7 +73,7 @@ const RetrosynthesisOutput = () => {
                             <CardHeader title={str1}></CardHeader>
                             <CardMedia
                               component="img"
-                              height="250"
+                              
                               image={`data:image/png;base64,${elementData.smile_temp}`}
                               alt="green iguana"
                             />
@@ -102,6 +104,7 @@ const RetrosynthesisOutput = () => {
           <Fab variant="extended" sx={{ mb: 2 }} onClick={()=>{
                         //history.push("/dashboard")
                         //history.back()
+                        navigate(-1)
                     }} style={{margin:'10px'}}>
                         <ArrowBack />
                     </Fab>

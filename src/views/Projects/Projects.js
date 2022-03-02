@@ -1,7 +1,7 @@
 //core imports
 import React, { useState } from "react";
 import { useEffect } from "react";
-
+import {useNavigate} from 'react-router-dom'
 import { History } from "@mui/icons-material";
 //mui imports
 import { styled } from '@mui/material/styles';
@@ -57,7 +57,7 @@ const Projects = () => {
   }
   funcc()
   // ==================================firebase id token================================================
- 
+  var navigate = useNavigate()
   const [did,setDid] = React.useState([])
   const [projectsData, setprojectsData] = React.useState([]);
   const [projectsdialog, setprojectsdialog] = React.useState(false);
@@ -118,7 +118,7 @@ const Projects = () => {
     const projects = []
     getDocs(q).then((snapshot) => {
       snapshot.docs.forEach((doc) => { 
-        console.log(doc.data())
+        console.log(doc,doc.id)
         projects.push({ ...doc.data(), id: doc.id }) });
       setprojectsData(projects)
     }).catch((err) => console.log(err));
@@ -127,6 +127,7 @@ const Projects = () => {
   //add project
   const projectref = collection(db, 'projects');
   const addproject = () => {
+    console.log(projectformdata.projectname,projectformdata.projectdesc,email,name,uid)
     if(projectformdata.projectname === '' || projectformdata.projectdesc === ''){
       console.log(errorMsg)
       showErrMsgFunction(true)  
@@ -138,17 +139,20 @@ const Projects = () => {
       projectdesc: projectformdata.projectdesc,
       owner: {
         email: email,
-        name: name,
         uid: uid
       }
-    }).then(setprojectformdata(
+    })
+    .then(res=>{
+      console.log(res.id)
+      
+    })
+    .then(setprojectformdata(
       {
         createdAt: '',
         projectname: '',
         projectdesc: '',
         owner: {
           email: '',
-          name: '',
           uid: ''
         }
       }
@@ -170,9 +174,9 @@ const Projects = () => {
             <StyledTableCell align="left">{data.projectname}</StyledTableCell>
             <StyledTableCell align="left">{data.projectdesc}</StyledTableCell>
             
-            <StyledTableCell align="center"><Link to={`/Experiments/${data.pid}`}>view</Link></StyledTableCell>
+            <StyledTableCell align="center"><Link to={`/Experiments/${data.id}`}>view</Link></StyledTableCell>
             <StyledTableCell align="center"> <IconButton
-            onClick={()=> editProject(data.projectname,data.projectdesc,data.pid)}><Edit /></IconButton><IconButton 
+            onClick={()=> editProject(data.projectname,data.projectdesc,data.id)}><Edit /></IconButton><IconButton 
             onClick={() => deleteproject(data.id)}><Delete /></IconButton></StyledTableCell>
           </StyledTableRow>
         )
@@ -186,9 +190,9 @@ const Projects = () => {
     setDid(id)
     setDeleteAlert(true)
   }
-  const deleteData = () => {
+  const deleteData =async () => {
     deleteDoc(doc(db, "projects", did));
-    getprojects()
+    await getprojects()
     setDid(null)
     setDeleteAlert(false)
   }
@@ -203,22 +207,13 @@ const Projects = () => {
   }
 
   const onEditProject =async () => {
-    console.log("project")
-    const data = {
-      projectname:name,
-      projectdesc:desc,
-    }
-    const q = query(collection(db, 'projects'), where("owner", "==", uid),where("projectname", "==", name));
-    const qu = query(collection(db,'project'),where("projectname", "==", name))
-    console.log(q)
-    updateDoc(
-      qu, {
-        projectname:name,
-        projectdesc:desc,
-      })
-    .then(res=>{
-      console.log(res)
-    })
+   const projectUpdateRef= doc(db, "projects", pid);
+   updateDoc(projectUpdateRef, {
+    projectname : name,
+    projectdesc:desc,
+    });
+    setEditBox(false)
+    getprojects()
   }
 
   const [isLoading, setLoading] = useState(true);
@@ -233,6 +228,7 @@ const Projects = () => {
       <Fab variant="extended" sx={{ mb: 2 }} onClick={()=>{
         //history.push("/dashboard")
         //history.back()
+        navigate(-1)
       }} style={{marginRight:'10px'}}>
         <ArrowBack />
       </Fab>
@@ -320,7 +316,10 @@ const Projects = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={closeDeleteAlert}>Close</Button>
-          <Button onClick={deleteData}>delete</Button>
+          <Button onClick={()=>{
+            deleteData()
+            getprojects()
+          }}>delete</Button>
         </DialogActions>
       </Dialog>
 
@@ -331,7 +330,7 @@ const Projects = () => {
             Edit Project Data
           </DialogContentText>
            <p>Project name : <input value={name} onChange={e=>{setName(e.target.value)}}/></p>
-           <p>Project description : <input value={desc} onChange={e=>{setName(e.target.value)}}/></p>
+           <p>Project description : <input value={desc} onChange={e=>{setDesc(e.target.value)}}/></p>
         </DialogContent>
         <DialogActions>
           <Button onClick={()=>setEditBox(false)}>Close</Button>

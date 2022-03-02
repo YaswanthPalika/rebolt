@@ -2,6 +2,7 @@ import React, { useEffect} from 'react';
 import {BallTriangle} from 'react-loader-spinner'
 import jsPDF from 'jspdf'
 import ArrowBack from '@mui/icons-material/ArrowBack';
+import {useNavigate} from 'react-router-dom';
 //css
 import './Retrotree.css';
 //mui imports
@@ -22,6 +23,7 @@ import MyComponent from '../sample';
 var arrayData = []
 
   const RetrosynthesisTreeOutput = () => {
+  var navigate = useNavigate()
 
   const [hid,changeHid] = React.useState([])
   const [open2,setopen2] = React.useState(false)
@@ -124,8 +126,14 @@ var arrayData = []
         
         renderNode={(node) =>{
           if(node.data.reference){
-            return `<p class="reference-card" style="border:4px solid #808080;"
-             hid=${node.data.id}>REFERENCE</p>`
+            return `
+             <div class="">
+                  <img src='https://res.cloudinary.com/doaejwdmk/image/upload/v1646204968/Reference_z5vvm7.png' 
+                  alt="asfda"
+                  class="reference-card"
+                  hid=${node.data.id}/>
+             </div>
+             `
           }
           else{
             if(node.data.buildingBlockPath == null){
@@ -134,7 +142,7 @@ var arrayData = []
           margin-top:-30px;
           padding:5px;border-radius:15px;box-shadow:2px spx black;box-shadow:4px 4px 5px grey;">
               <img class="tree-img" src='data:image/jpeg;base64, ${node.data.smileB64}' hid=${node.data.id}/>
-              <p hid=${node.data.id}></p>
+              
           </div>
           `
             }
@@ -144,7 +152,7 @@ var arrayData = []
                     margin-top:-30px;
                     padding:5px;border-radius:15px;box-shadow:2px spx black;box-shadow:4px 4px 5px grey;">
                         <img class="tree-img" src='data:image/jpeg;base64, ${node.data.smileB64}' hid=${node.data.id}/>
-                        <p hid=${node.data.id}></p>
+                        
                     </div>
                     `
             }
@@ -155,7 +163,7 @@ var arrayData = []
         }
         onNodeClick={(node) => {
           
-          var nid = new DOMParser().parseFromString(node.srcElement.outerHTML, 'text/html').body.getElementsByTagName("p")[0].getAttribute('hid');
+          var nid = new DOMParser().parseFromString(node.srcElement.outerHTML, 'text/html').body.getElementsByTagName("img")[0].getAttribute('hid');
           nid = parseInt(nid)
          // console.log(data1[parseInt(nid)])
          // console.log(data1[nid].building_block)
@@ -195,7 +203,8 @@ var arrayData = []
       
           <Fab variant="extended" sx={{ mb: 2 }} onClick={()=>{
                         //history.push("/dashboard")
-                        //history.back()
+                        //history.goBack()
+                        navigate(-1)
                     }} style={{margin:'10px'}}>
                         <ArrowBack />
         </Fab>

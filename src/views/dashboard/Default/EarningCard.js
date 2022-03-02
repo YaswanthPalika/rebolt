@@ -4,7 +4,7 @@ import { useState } from 'react';
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
 import { Avatar, Box, Button, Grid, Menu, MenuItem, Typography } from '@mui/material';
-
+import './index.css'
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
@@ -87,13 +87,13 @@ const EarningCard = ({ isLoading }) => {
                                 <Grid container alignItems="center">
                                     <Grid item>
                                         <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                            Rebolt
+                                             ABOUT
                                         </Typography>
                                     </Grid>
 
                                 </Grid>
                             </Grid>
-                            <Grid item sx={{ mb: 1.25 }}>
+                            <Grid className="rebolt-box" item sx={{ mb: 1.25 }}>
                                 <Typography
                                     sx={{
                                         fontSize: '1rem',
@@ -101,55 +101,10 @@ const EarningCard = ({ isLoading }) => {
                                         color: theme.palette.secondary[200]
                                     }}
                                 >
-                                    ReBolt is Boltzmann’s synthesis planning tool to accelerate the process of synthesis. Plan and Design your reaction pathways within a few minutes by just a few clicks.
+                                    ReBolt includes features like Retrosynthesis, Forward reaction, Atom Mapping, and many more filtering features to choose and design the synthesis route accordingly.
+
                                 </Typography>
-                                <Typography
-                                    sx={{
-                                        fontSize: '1rem',
-                                        fontWeight: 500,
-                                        color: theme.palette.secondary[200]
-                                    }}
-                                >
-                                    Synthesis process made Effortless, Economical and Expeditious with ReBolt.
-                                </Typography>
-                                <Typography
-                                    sx={{
-                                        fontSize: '1rem',
-                                        fontWeight: 500,
-                                        color: theme.palette.secondary[200]
-                                    }}
-                                >
-                                    Chemistry with AI making it a powerful tool.
-                                </Typography>
-                                <Typography
-                                    sx={{
-                                        fontSize: '1rem',
-                                        fontWeight: 500,
-                                        color: theme.palette.secondary[200]
-                                    }}
-                                >
-                                    Check the various pathways ranked accordingly for your desired compound.
-                                </Typography>
-                                <Typography
-                                    sx={{
-                                        fontSize: '1rem',
-                                        fontWeight: 500,
-                                        color: theme.palette.secondary[200]
-                                    }}
-                                >
-                                    Choose the pathway and start your process immediately. There’s no need to check it again manually.
-                                </Typography>
-                                <Typography
-                                    sx={{
-                                        fontSize: '1rem',
-                                        fontWeight: 500,
-                                        color: theme.palette.secondary[200],
-                                    }}
-                                >
-                                    Ordering the desired chemicals or starting materials is also made easy. Just choose the type of vendor,Price and lead time  from the mentioned list and order it by hardly 3-4 clicks.
-                                </Typography>
-                                <Button variant='outline' size='large'>Start</Button>
-                            </Grid>
+                                </Grid>
                         </Grid>
                     </Box>
                 </CardWrapper>

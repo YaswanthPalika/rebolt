@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import {BallTriangle} from 'react-loader-spinner'
 import ArrowBack from '@mui/icons-material/ArrowBack';
 // material-ui
@@ -16,6 +16,7 @@ import { onSnapshot, query, where, collection, doc, getDoc } from '@firebase/fir
 
 
 const TemplateFree = () => {
+  var navigate = useNavigate()
   const [cardoutputdata, setcardoutputdata] = React.useState([])
   const [arrayKeys, setArrayKeys] = React.useState([])
   const [isLoading,setLoader] = React.useState(false)
@@ -59,8 +60,7 @@ const TemplateFree = () => {
   const RenderCardOutput = () => (
                   <>
                   <Fab variant="extended" sx={{ mb: 2 }} onClick={()=>{
-                        const {history} = this.props
-                        history.back()
+                        navigate(-1)
                         //history.push("/dashboard")
                         //history.back()
                     }} style={{margin:'10px'}}>

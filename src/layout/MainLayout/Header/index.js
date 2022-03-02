@@ -29,7 +29,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
                     }
                 }}
             >
-                <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
+                <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 0 }}>
                     <LogoSection />
                 </Box>
                 <ButtonBase sx={{ borderRadius: '12px', overflow: 'hidden' }}>
@@ -52,6 +52,10 @@ const Header = ({ handleLeftDrawerToggle }) => {
                         <IconMenu2 stroke={1.5} size="1.3rem" />
                     </Avatar>
                 </ButtonBase>
+                <img style={{height:"50px",marginLeft:"10px"}}
+                    src="https://res.cloudinary.com/doaejwdmk/image/upload/v1646156842/ezgif.com-gif-maker_1_grin8b.gif"
+                    alt="img-sks"
+                />
             </Box>
 
             {/* header search */}
