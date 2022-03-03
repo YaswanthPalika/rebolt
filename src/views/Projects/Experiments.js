@@ -131,7 +131,11 @@ const Experiments = () => {
                             <StyledTableCell align='left'>
                                     {data.status === 'completed' ? "completed" : "pending"}
                             </StyledTableCell>
-                            <StyledTableCell align='left'><Link to={`/Rebolt/${template}/${data.id}`}>View</Link></StyledTableCell>
+                            <StyledTableCell align='left'>
+                                {data.status === 'completed' ?<Link to={`/Rebolt/${template}/${data.id}`}>View</Link>  
+                                :<p>view</p> }
+                                
+                            </StyledTableCell>
                             <StyledTableCell align='left'>
                                 <IconButton 
                                 onClick={()=> editProject(data.expname,data.description,data.id)}

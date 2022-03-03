@@ -161,9 +161,11 @@ const ShadowBox = ({ shadow }, props) => {
         "target_mol": targetmol,
         "max_steps": numOfSteps,
         "tokenid": token,
-      })).then(setexpname("")).then(settargetmol("")).then(setdesc(""))
-      .then(alert("experiment submitted succesfully!"))
-      .catch(alert('error occured ,please try again'))
+      })).then(setexpname("")).then(settargetmol(""))
+      .then(()=>{
+        setdesc("")
+        alert("experiment submitted succesfully!")
+      })
       handleclose()
     }
     else{
@@ -180,8 +182,11 @@ const ShadowBox = ({ shadow }, props) => {
         "target_mol": targetmol,
         "max_steps": numOfSteps,
         "tokenid": token,
-      })).then(setexpname("")).then(settargetmol("")).then(setdesc("")).then(alert("experiment submitted succesfully!"))
-      .catch(alert('error occured ,please try again'))
+      })).then(setexpname("")).then(()=>{
+        settargetmol("")
+        setdesc("")
+        alert("experiment submitted succesfully!")
+      })      
       handleclose() 
     }
     

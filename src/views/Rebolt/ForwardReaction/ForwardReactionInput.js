@@ -180,7 +180,7 @@ const ShadowBox = ({ shadow }, props) => {
         setdesc("")
         alert("experiment submitted succesfully!")
       })
-      .catch(alert("error occured, please try again!"))
+      
       handleclose()
   }
 

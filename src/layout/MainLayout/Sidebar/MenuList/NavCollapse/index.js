@@ -70,8 +70,10 @@ const NavCollapse = ({ menu, level }) => {
                 selected={selected === menu.id}
                 onClick={handleClick}
             >
-                <ListItemIcon sx={{ my: 'auto', minWidth: !menu.icon ? 18 : 36 }}>{menuIcon}</ListItemIcon>
-                <ListItemText
+                <img className='image-icon' 
+                style={{width:"25px",marginTop:"5px"}}
+                src={menu.image} alt="geord"/>
+                <ListItemText style={{margin:"10px"}}
                     primary={
                         <Typography variant={selected === menu.id ? 'h5' : 'body1'} color="inherit" sx={{ my: 'auto' }}>
                             {menu.title}

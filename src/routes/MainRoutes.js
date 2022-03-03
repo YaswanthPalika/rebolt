@@ -18,7 +18,7 @@ const Experiments = Loadable(lazy(() => import('views/Projects/Experiments')));
 const TemplateFree = Loadable(lazy(() => import('views/Rebolt/Retrosynthesis/templateFree')));
 const TemplateFreeTree = Loadable(lazy(() => import('views/Rebolt/Retrosynthesis/templatefreetree')));
 const Help = Loadable(lazy(() => import('views/help/help')));
-const Dashboard2 = Loadable(lazy(() => import('views/dashboard2/index')));
+
 
 
 
@@ -31,10 +31,6 @@ const MainRoutes = {
         {
             path: '/',
             element: <DashboardDefault />
-        },
-        {
-            path: '/dashboard/default',
-            element: <Dashboard2 />
         },
         {
             path: '/help',

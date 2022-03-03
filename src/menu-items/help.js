@@ -17,7 +17,8 @@ const help = {
             type: 'item',
             url: '/help',
             icon:icons.HelpOutlineIcon,
-            breadcrumbs: false
+            breadcrumbs: false,
+            image:'https://res.cloudinary.com/doaejwdmk/image/upload/v1646290974/help_n3ymto.png'
         }
     ]
 };

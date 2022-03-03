@@ -17,7 +17,8 @@ const faq = {
             type: 'item',
             url: '/Faq/Faq',
             icon:icons.IconHelp,
-            breadcrumbs: false
+            breadcrumbs: false,
+            image:'https://res.cloudinary.com/doaejwdmk/image/upload/v1646290974/faq_bgokap.png'
         }
     ]
 };

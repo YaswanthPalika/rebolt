@@ -17,7 +17,8 @@ const project = {
             type: 'item',
             url: '/Projects',
             icon:icons.IconCloudFog,
-            breadcrumbs: false
+            breadcrumbs: false,
+            image:'https://res.cloudinary.com/doaejwdmk/image/upload/v1646288251/image5_yxuono.png'
         }
     ]
 };

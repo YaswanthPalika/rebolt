@@ -20,6 +20,7 @@ const dashboard = {
             type: 'item',
             url: '/',
             icon: icons.IconBoxModel ,
+            image:'https://res.cloudinary.com/doaejwdmk/image/upload/v1646290974/about_auvyjd.png',
             breadcrumbs: false
         }
     ]

@@ -15,6 +15,7 @@ import Paper from '@mui/material/Paper';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Fab, Grid, IconButton, TableFooter, TextField } from "@mui/material";
 import { Add, ArrowBack, Delete, Edit } from "@mui/icons-material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import './experiment.css'
 //user data imports
 import { db, email, name, uid } from 'index';
 //firebase imports
@@ -175,8 +176,9 @@ const Projects = () => {
             <StyledTableCell align="left">{data.projectdesc}</StyledTableCell>
             
             <StyledTableCell align="center"><Link to={`/Experiments/${data.id}`}>view</Link></StyledTableCell>
-            <StyledTableCell align="center"> <IconButton
-            onClick={()=> editProject(data.projectname,data.projectdesc,data.id)}><Edit /></IconButton><IconButton 
+            <StyledTableCell align="center"> <IconButton className="icon12"
+            onClick={()=> editProject(data.projectname,data.projectdesc,data.id)}><Edit /></IconButton>
+            <IconButton className="icon12"
             onClick={() => deleteproject(data.id)}><Delete /></IconButton></StyledTableCell>
           </StyledTableRow>
         )
