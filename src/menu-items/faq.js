@@ -6,9 +6,9 @@ const icons = { IconHelp };
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
+
 const faq = {
     id: 'faq',
-    title:'faq',
     type: 'group',
     children: [
         {

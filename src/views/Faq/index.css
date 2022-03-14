@@ -1,6 +1,4 @@
-.faq-box{
-    background-image: url('https://res.cloudinary.com/doaejwdmk/image/upload/v1646185672/image2_x8jqlk.jpg');
-    height: auto;
+.faq-card{
+    background-image: url('https://res.cloudinary.com/doaejwdmk/image/upload/v1646844274/Untitled_design_4_twvonn.png');
     background-size:cover;
-    opacity: 95%;
 }

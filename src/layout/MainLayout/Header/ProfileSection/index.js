@@ -198,7 +198,7 @@ const ProfileSection = () => {
                                                                 <ListItemIcon>
                                                                     <IconLogout stroke={1.5} size="1.3rem" />
                                                                 </ListItemIcon>
-                                                                <ListItemText primary={<Typography variant="body2">signOut</Typography>} />
+                                                                <ListItemText primary={<Typography variant="body2">Sign Out</Typography>} />
                                                             </ListItemButton>
                                                             <ListItemButton
                                                                 sx={{ borderRadius: `${customization.borderRadius}px` }}
@@ -207,7 +207,7 @@ const ProfileSection = () => {
                                                                 <ListItemIcon>
                                                                     <IconSettings stroke={1.5} size="1.3rem" />
                                                                 </ListItemIcon>
-                                                                <ListItemText primary={<Typography variant="body2">account settings</Typography>} />
+                                                                <ListItemText primary={<Typography variant="body2">Account settings</Typography>} />
                                                             </ListItemButton>
                                                             <ListItemButton
                                                                 sx={{ borderRadius: `${customization.borderRadius}px` }}

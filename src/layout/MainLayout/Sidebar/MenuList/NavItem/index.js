@@ -68,6 +68,7 @@ const NavItem = ({ item, level }) => {
         <ListItemButton
             {...listItemProps}
             disabled={item.disabled}
+            disableGutters={true}   
             sx={{
                 borderRadius: `${customization.borderRadius}px`,
                 mb: 0.5,

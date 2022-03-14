@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // material-ui
 import { useTheme, styled } from '@mui/material/styles';
 import { Avatar,Grid, Box, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
-//import './help.css'
+import './help.css'
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import TotalIncomeCard from 'ui-component/cards/Skeleton/TotalIncomeCard';
@@ -49,9 +49,11 @@ const Help = ({ isLoading }) => {
                 <TotalIncomeCard />
             ) : (
                 <CardWrapper 
-                
+                className="bg-image"
                 border={false} content={false}>
-                    <Box sx={{ p: 2 }}>
+                    <Box sx={{ p: 2 ,
+                     color:theme.palette.secondary.dark
+                    }}>
                     <Grid className="image-box" container direction="column">
                             <Grid item>
                                 <Grid container justifyContent="space-between">
@@ -62,7 +64,9 @@ const Help = ({ isLoading }) => {
                             <Grid item>
                                 <Grid container alignItems="center">
                                 <Grid>
-                                <Typography sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                <Typography 
+                                style={{color:'#000'}}
+                                sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                 PROJECTS
                                 </Typography>
                             </Grid>
@@ -74,22 +78,29 @@ const Help = ({ isLoading }) => {
                                         color: theme.palette.grey
                                     }}
                                 >
-                                   Creating a New Project contains the Name and Description which need to be added wherein the description is not mandatory for you to enter.<br/>
-
-                                    As soon as a project is created, it’ll automatically get added to the list of projects. There are Edit and Delete icons present. All the experiments in the project are deleted once you choose the Delete option.<br/>
-
-                                    You can create a number of  Experiments in each project.<br/>
-
-                                    You can visualize the status of the experiment. Once you give input and search, that experiment is shown as pending and it’ll automatically change to Completed once the output is available. This whole process will typically take a couple of minutes.<br/>
-
-                                    There is also one special feature in the experiments section. You can see in the top right there is a filter option that contains Template Based Retrosynthesis, Template Free Retrosynthesis, Forward Reaction. You can see your experiments accordingly. Please do not forget to change the filter once you’re using different experiments.<br/>
-
-
-
+                                    <ul>
+                                        <li>
+                                            Creating a New Project contains the Name and Description which need to be added wherein the description is not mandatory for you to enter.<br/>
+                                        </li>
+                                        <li>
+                                        As soon as a project is created, it’ll automatically get added to the list of projects. There are Edit and Delete icons present. All the experiments in the project are deleted once you choose the Delete option.<br/>
+                                        </li>
+                                        <li>
+                                        You can create a number of  Experiments in each project.<br/>
+                                        </li>
+                                        <li>
+                                        You can visualize the status of the experiment. Once you give input and search, that experiment is shown as pending and it’ll automatically change to Completed once the output is available. This whole process will typically take a couple of minutes.<br/>
+                                        </li>
+                                        <li>
+                                        There is also one special feature in the experiments section. You can see in the top right there is a filter option that contains Template Based Retrosynthesis, Template Free Retrosynthesis, Forward Reaction. You can see your experiments accordingly. Please do not forget to change the filter once you’re using different experiments.<br/>
+                                        </li>
+                                    </ul>
                                 </Typography>
                               </Grid>
                                     <Grid item>
-                                        <Typography sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                        <Typography
+                                        style={{color:'#000'}}
+                                         sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                         ReBolt - Retrosynthesis 
                                         </Typography>
                                     </Grid>
@@ -109,7 +120,9 @@ const Help = ({ isLoading }) => {
                                 </Typography>
                                 </Grid>
                             <Grid>
-                                <Typography sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                <Typography 
+                                style={{color:'#000'}}
+                                 sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                 If you choose Template Based Retrosynthesis,
                                 </Typography>
                             </Grid>
@@ -121,24 +134,38 @@ const Help = ({ isLoading }) => {
                                         color: theme.palette.grey
                                     }}
                                 >
-                                   Once the output is available, you can first see the Retro Cards which contain the target molecule structure, USPTO I’d, score, and a number of steps. Each card contains a different pathway for the same target molecule. In simpler terms, the number of cards for each target molecule is equal to the number of pathways and is placed accordingly.<br/>
+                                    <ul>
+                                        <li>
+                                        Once the output is available, you can first see the Retro Cards which contain the target molecule structure, USPTO I’d, score, and a number of steps. Each card contains a different pathway for the same target molecule. In simpler terms, the number of cards for each target molecule is equal to the number of pathways and is placed accordingly.<br/>
 
-Select a card and click on the view where the pathway is displayed in the form of a tree.<br/>
+                                        </li>
+                                        <li>
+                                        Select a card and click on the view where the pathway is displayed in the form of a tree.<br/>
 
-The blue outline/ box for the structures represents the target molecule or the intermediates of the pathway.<br/>
+                                            </li>
+                                            <li>
+                                            The blue outline/ box for the structures represents the target molecule or the intermediates of the pathway.<br/>
 
-The green outline/ box for the structures represents the commercially/readily available starting materials. You can buy that chemical if you click on the options present there which redirects it to that particular database in which that particular chemical is available.<br/>
-
-References are also provided in between each reaction. It gives you an idea about the brief procedure, Time, USPTO I’d, USPTO link, and score.<br/>
-
-There is also an option provided to copy the SMILES of all the structures present in the pathway.<br/>
-
-You can also download the shown pathway by clicking the download option present in the extreme down of the output tree screen.<br/>
-
+                                            </li>
+                                            <li>
+                                            The green outline/ box for the structures represents the commercially/readily available starting materials. You can buy that chemical if you click on the options present there which redirects it to that particular database in which that particular chemical is available.<br/>
+                                            </li>
+                                            <li>
+                                            References are also provided in between each reaction. It gives you an idea about the brief procedure, Time, USPTO I’d, USPTO link, and score.<br/>
+                                            </li>
+                                            <li>
+                                            There is also an option provided to copy the SMILES of all the structures present in the pathway.<br/>
+                                            </li>
+                                            <li>
+                                            You can also download the shown pathway by clicking the download option present in the extreme down of the output tree screen.<br/>
+                                            </li>
+                                    </ul>
                                 </Typography>
                               </Grid>
                               <Grid>
-                                <Typography sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                <Typography 
+                                style={{color:'#000'}}
+                                 sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                 If you choose Template Free Retrosynthesis,
                                 </Typography>
                             </Grid>
@@ -150,22 +177,37 @@ You can also download the shown pathway by clicking the download option present 
                                         color: theme.palette.grey
                                     }}
                                 >
-                                    Once the output is available, you can first see the Retro Cards which contain the target molecule structure, score, and a number of steps. Each card contains a different pathway for the same target molecule. In simpler terms, the number of cards for each target molecule is equal to the number of pathways.<br/>
+                                    <ul>
+                                        <li>
+                                        Once the output is available, you can first see the Retro Cards which contain the target molecule structure, score, and a number of steps. Each card contains a different pathway for the same target molecule. In simpler terms, the number of cards for each target molecule is equal to the number of pathways.<br/>
 
-Select a card and click on the view where the pathway is displayed in the form of a tree.<br/>
-
-The blue outline/ box for the structures represents the target molecule or the intermediates of the pathway.<br/>
-
-The green outline/ box for the structures represents the commercially/readily available starting materials. You can buy that chemical if you click on the options present there which redirects it to that particular database in which that particular chemical is available.<br/>
-
-There is also an option provided to copy the SMILES of all the structures present in the pathway.<br/>
-
-You can also download the shown pathway by clicking the download option present in the extreme down of the output tree screen.<br/>
-
+                                        </li>
+                                        <li>
+                                        Select a card and click on the view where the pathway is displayed in the form of a tree.<br/>
+ 
+                                        </li>
+                                        <li>
+                                        The blue outline/ box for the structures represents the target molecule or the intermediates of the pathway.<br/>
+ 
+                                        </li>
+                                        <li>
+                                        The green outline/ box for the structures represents the commercially/readily available starting materials. You can buy that chemical if you click on the options present there which redirects it to that particular database in which that particular chemical is available.<br/>
+ 
+                                        </li>
+                                        <li>
+                                        There is also an option provided to copy the SMILES of all the structures present in the pathway.<br/>
+  
+                                        </li>
+                                        <li>
+                                        You can also download the shown pathway by clicking the download option present in the extreme down of the output tree screen.<br/>
+ 
+                                        </li>
+                                    </ul>
                                 </Typography>
                               </Grid>
                               <Grid>
-                                <Typography sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                <Typography style={{color:'#000'}}
+                                 sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                 ReBolt - Forward Reaction
                                 </Typography>
                             </Grid>
@@ -177,10 +219,17 @@ You can also download the shown pathway by clicking the download option present 
                                         color: theme.palette.grey
                                     }}
                                 >
-                                    As an input you have to give the Experiment name, SMILES of the compounds (Reactants) or you can also choose to draw the structure using Sketcher and you can also add solvent or Catalyst if any. 
+                                    <ul>
+                                        <li>
+                                        As an input you have to give the Experiment name, SMILES of the compounds (Reactants) or you can also choose to draw the structure using Sketcher and you can also add solvent or Catalyst if any. 
 You can add more than one reactant in the same sketcher
+                                        </li>
+                                        <li>
+                                        You can see the Output in the form of a table which contains a list of possible products which are ranked accordingly, the 2D structure of the products, SMILES to copy, and some basic properties of that product.
+                                        </li>
+                                    </ul>
+                                    
 
-You can see the Output in the form of a table which contains a list of possible products which are ranked accordingly, the 2D structure of the products, SMILES to copy, and some basic properties of that product.
                                 </Typography>
                               </Grid>
                               

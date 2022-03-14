@@ -94,7 +94,8 @@ const Experiments = () => {
         console.log("yes")
         console.log(template,uid)
         setLoader(true)
-        const q = query(collection(db, template),where("uid", "==", uid ),where("project_id","==",pid.trim()))
+       const q = query(collection(db, template),where("uid", "==", uid ),where("project_id","==",pid.trim()))
+       //const q = collection(db, template)
         // where("uid", "==", uid ),where("pid","==",pid.trim())
         const experiments = []
         await getDocs(q,).then((snapshot) => {
@@ -104,6 +105,7 @@ const Experiments = () => {
         }).catch((err) => console.log(err));
         setLoader(false)
     }
+    
 
     React.useEffect(() => {
         getexperiments();
@@ -128,6 +130,7 @@ const Experiments = () => {
                             <StyledTableCell align='left'>{index+1}</StyledTableCell>
                             <StyledTableCell align='left'>{data.expname}</StyledTableCell>
                             <StyledTableCell align='left'>{data.description}</StyledTableCell>
+                            
                             <StyledTableCell align='left'>
                                     {data.status === 'completed' ? "completed" : "pending"}
                             </StyledTableCell>
@@ -192,7 +195,7 @@ const Experiments = () => {
                     }
                     }>
                     <option  value="retrosynthesis">Retrosynthesis Template Based</option>
-                    <option value="retrosynthesis_tf">retrosynthesis Template Free</option>
+                    <option value="retrosynthesis_tf">Retrosynthesis Template Free</option>
                     <option value="forward_reaction">Forward Reaction</option>
                 </select>
             </div>
@@ -202,7 +205,7 @@ const Experiments = () => {
                     <TableHead>
                         <StyledTableRow>
                             <StyledTableCell align='left'>S.No</StyledTableCell>
-                            <StyledTableCell align='left'>Experiment name</StyledTableCell>
+                            <StyledTableCell align='left'>Experiment Name</StyledTableCell>
                             <StyledTableCell align='left'>Description</StyledTableCell>
                             <StyledTableCell align='left'>Status</StyledTableCell>
                             <StyledTableCell align='left'>Output</StyledTableCell>
@@ -268,7 +271,7 @@ const Experiments = () => {
           <DialogContentText>
             ALERT
           </DialogContentText>
-           <p>Are you sure, all the data will be perementally erased</p>
+           <p>Are you sure, all the data will be permanently erased</p>
         </DialogContent>
         <DialogActions>
           <Button onClick={closeDeleteAlert}>Close</Button>

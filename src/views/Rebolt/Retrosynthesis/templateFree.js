@@ -39,8 +39,15 @@ const TemplateFree = () => {
       const y = Object.values(x)
       const z = Object.keys(x)
       y.sort()
+      const dataArray = {}
+      var a=y.sort((each)=>{
+        const idx = each.idx
+        dataArray[idx] = each
+      })
+      
+      const data1 = Object.values(dataArray)
       await setArrayKeys(z)
-      await setcardoutputdata(y)
+      await setcardoutputdata(data1)
     })
 
 

@@ -43,7 +43,7 @@ import { signinwithgoogle } from 'index';
 import { auth } from 'index';
 
 import { onAuthStateChanged } from "@firebase/firestore";
-import { collection, CollectionReference, doc, setDoc } from '@firebase/firestore';
+import { collection, CollectionReference, where , query , doc, setDoc ,getDocs, addDoc ,serverTimestamp } from '@firebase/firestore';
 import { db } from 'index';
 
 
@@ -83,9 +83,31 @@ const FirebaseLogin = ({ ...others }) => {
                     });
                 }
                 createp()
+                const createSampleProject =async () =>{
+                    const q = query(collection(db, 'projects'), where("owner.uid", "==", user.uid));
+                    await getDocs(q).then((snapshot) => {
+                        if(snapshot.docs.length === 0){
+                            console.log("yes its null")
+                        addDoc(collection(db, 'projects'), {
+                            createdAt: serverTimestamp(),
+                            projectname: "sample",
+                            projectdesc: "sample project",
+                            owner: {
+                            email: user.email,
+                            uid: user.uid
+                            }
+                        })
+                        setTimeout(() => {
+                            console.log("over")
+                            }, 2000);
+                        } 
+                        console.log("haaaa")
+                    }).catch((err) => console.log(err));
+                }
+                createSampleProject()
                 setTimeout(() => {
                     navigate('/dashboard/default');
-                }, 3000);
+                }, 0);
             }
             
         }

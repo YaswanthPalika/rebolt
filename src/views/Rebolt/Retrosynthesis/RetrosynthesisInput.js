@@ -103,7 +103,7 @@ const KetcherApp = ()=>{
 
 // ===============================|| SHADOW BOX ||=============================== //
 const funcc =async () => {
-  const auth = getAuth();
+  const auth =await getAuth();
   const { currentUser } = auth;
 
   token = await currentUser.getIdToken(/* forceRefresh */ false);
@@ -121,7 +121,7 @@ const ShadowBox = ({ shadow }, props) => {
   const [open2,setopen2] = React.useState(false)
   const [open3,setOpen3] = React.useState(false)
   const [desc,setdesc] = React.useState()
-  const [numOfSteps,setNumOfSteps] = React.useState(10)
+  const [numOfSteps,setNumOfSteps] = React.useState(5)
   
   const handleclose = () => {
     setopen(false)
@@ -262,13 +262,12 @@ const ShadowBox = ({ shadow }, props) => {
             </Button>
           </Grid>
           <Grid item xl={6} xs={12}>
-            <FormControl fullWidth>
+            <FormControl fullWidth label="Select">
               <InputLabel id="demo-simple-select-label">Select Type</InputLabel>
               <Select
-
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                label="Age"
+                label="Select type"
                 value={template}
                 onChange={e => {
                   template = e.target.value
@@ -342,7 +341,7 @@ const ShadowBox = ({ shadow }, props) => {
         maxWidth="xs"
         open={open3}
       >
-        <DialogTitle>Select maximum number of steps</DialogTitle>
+        
         <DialogContent dividers>
           <p>maximum number of steps <input value={numOfSteps} onChange={e =>{
             setNumOfSteps(e.target.value)
@@ -350,7 +349,7 @@ const ShadowBox = ({ shadow }, props) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={()=> {
-            setNumOfSteps(0)
+            setNumOfSteps(5)
             setOpen3(false)}}>
             Cancel
           </Button>
@@ -359,11 +358,11 @@ const ShadowBox = ({ shadow }, props) => {
       </Dialog>
 
       <Dialog
-        sx={{ '& .MuiDialog-paper': { maxWidth: '100vw', maxHeight: '95vh' } }}
+        sx={{ '& .MuiDialog-paper': { maxWidth: '100vw', height: '100%' } }}
         minWidth="xs"
         open={open2}
       >
-        <DialogTitle>Kecther Tool</DialogTitle>
+        
         <DialogContent dividers>
           <KetcherApp />
         </DialogContent>

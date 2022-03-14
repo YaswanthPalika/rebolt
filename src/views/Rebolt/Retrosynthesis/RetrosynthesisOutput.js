@@ -20,6 +20,7 @@ import { onSnapshot, query, where, collection, doc, getDoc } from '@firebase/fir
 const RetrosynthesisOutput = () => {
   var navigate = useNavigate()
   const [cardoutputdata, setcardoutputdata] = React.useState([])
+  const [sortedData,setSortedData] = React.useState({})
   const [arrayKeys, setArrayKeys] = React.useState([])
   const [isLoading,setLoader] = React.useState(false)
   const { eid } = useParams();
@@ -38,9 +39,17 @@ const RetrosynthesisOutput = () => {
       const x =res.data().output
       const y = Object.values(x)
       const z = Object.keys(x)
-      y.sort()
+      const dataArray = {}
+      var a=y.sort((each)=>{
+        const idx = each.idx
+        dataArray[idx] = each
+      })
+      
+      const data1 = Object.values(dataArray)
       await setArrayKeys(z)
-      await setcardoutputdata(y)
+      await setcardoutputdata(data1)
+      //setSortedData(data1)
+      //console.log(Object.values(dataArray))
     })
 
 
@@ -61,16 +70,24 @@ const RetrosynthesisOutput = () => {
                   <>
                     <MainCard style={{ mb: '2' }}>
                       <Grid container spacing={2}>
+                        
               {
                   cardoutputdata.map(data =>{
                     const idx = data.idx
                     const elementData = data.path[0]
-                    console.log(elementData)
+                    
+                    //console.log(elementData)
                     const str1 = `USPTO i’d : ${elementData.usid}`
                   return(<>
                     <Grid item xs={12} lg={4}>
                           <Card elevation={2}>
-                            <CardHeader title={str1}></CardHeader>
+                            {/*<CardHeader title={str1}></CardHeader> */ }
+                            <CardContent>
+                              <Grid container spacing={2}>
+                                <Grid items style={{marginTop:'5px'}}><Typography variant="body" content="body" display="inline">
+                                  {str1} </Typography></Grid>
+                              </Grid>
+                            </CardContent>
                             <CardMedia
                               component="img"
                               

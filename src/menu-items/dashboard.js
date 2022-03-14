@@ -10,8 +10,6 @@ const icons = { IconBoxModel};
 
 const dashboard = {
     id: 'About',
-    title:'About',
-    caption:'more about us',
     type: 'group',
     children: [
         {

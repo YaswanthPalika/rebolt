@@ -5,7 +5,7 @@ import {Link } from 'react-router-dom'
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
 import { Avatar, Box, Button, Grid, Menu, MenuItem, Typography } from '@mui/material';
-
+import './index.css'
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
@@ -20,39 +20,12 @@ import PictureAsPdfTwoToneIcon from '@mui/icons-material/PictureAsPdfOutlined';
 import ArchiveTwoToneIcon from '@mui/icons-material/ArchiveOutlined';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
-    backgroundColor: theme.palette.secondary.dark,
+    backgroundColor: theme.palette.secondary.light,
     color: '#fff',
     overflow: 'hidden',
     position: 'relative',
-    '&:after': {
-        content: '""',
-        position: 'absolute',
-        width: 210,
-        height: 210,
-        background: theme.palette.secondary[800],
-        borderRadius: '50%',
-        top: -85,
-        right: -95,
-        [theme.breakpoints.down('sm')]: {
-            top: -105,
-            right: -140
-        }
-    },
-    '&:before': {
-        content: '""',
-        position: 'absolute',
-        width: 210,
-        height: 210,
-        background: theme.palette.secondary[800],
-        borderRadius: '50%',
-        top: -125,
-        right: -15,
-        opacity: 0.5,
-        [theme.breakpoints.down('sm')]: {
-            top: -155,
-            right: -70
-        }
-    }
+    
+   
 }));
 
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
@@ -75,9 +48,10 @@ const Faq = ({ isLoading }) => {
             {isLoading ? (
                 <SkeletonEarningCard />
             ) : (
-                <CardWrapper border={false} content={false}>
-                    <Box sx={{ p: 2.25 }}>
-                        <Grid className="faq-box" container direction="column">
+                <CardWrapper  border={false} content={false}>
+                    <Box className="faq-card" sx={{ p: 2.25 }}>
+                        <div >
+                        <Grid   container direction="column">
                             <Grid item>
                                 <Grid container justifyContent="space-between">
 
@@ -87,7 +61,9 @@ const Faq = ({ isLoading }) => {
                             <Grid item>
                                 <Grid container alignItems="center">
                                 <Grid>
-                                <Typography sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                <Typography
+                                style={{color:'#000'}}
+                                 sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                   Why ReBolt?<br/>
                                   What are we trying to do?
                                 </Typography>
@@ -97,7 +73,7 @@ const Faq = ({ isLoading }) => {
                                     sx={{
                                         fontSize: '1rem',
                                         fontWeight: 500,
-                                        color: theme.palette.secondary[200]
+                                        color: theme.palette.secondary.main
                                     }}
                                 >
                                    We have seen Chemists manually exploring the available data and designing the synthesis 
@@ -112,7 +88,10 @@ const Faq = ({ isLoading }) => {
                                 </Typography>
                               </Grid>
                                     <Grid item>
-                                        <Typography sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                        <Typography sx={{ fontSize: '1.125rem', 
+                                        fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 ,
+                                        color: theme.palette.secondary.dark}}
+                                        style={{color:'#000'}}>
                                         Using ReBolt
                                         </Typography>
                                     </Grid>
@@ -124,7 +103,7 @@ const Faq = ({ isLoading }) => {
                                     sx={{
                                         fontSize: '1rem',
                                         fontWeight: 500,
-                                        color: theme.palette.secondary[200]
+                                        color: theme.palette.secondary.main
                                     }}
                                 >
                                     Detailed explanation on how to use the platform is explained in the USER MANUAL. <Link to ="/help">Click here to view the User Manual.</Link>
@@ -132,7 +111,9 @@ const Faq = ({ isLoading }) => {
                                 </Typography>
                                 </Grid>
                             <Grid>
-                                <Typography sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                <Typography
+                                style={{color:'#000'}}
+                                sx={{color: theme.palette.secondary.dark, fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                   Chemical hazards
                                 </Typography>
                             </Grid>
@@ -141,14 +122,16 @@ const Faq = ({ isLoading }) => {
                                     sx={{
                                         fontSize: '1rem',
                                         fontWeight: 500,
-                                        color: theme.palette.secondary[200]
+                                        color: theme.palette.secondary.main
                                     }}
                                 >
                                     Any chemical stated in the predicted pathway that is hazardous should be taken care of by the authorized person. ReBolt doesn’t take any such obligations.
                                 </Typography>
                               </Grid>
                               <Grid>
-                                <Typography sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                <Typography
+                                style={{color:'#000'}}
+                                sx={{color: theme.palette.secondary.dark, fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                 How safe is my personal and Experimental data with ReBolt?
                                 </Typography>
                             </Grid>
@@ -157,14 +140,14 @@ const Faq = ({ isLoading }) => {
                                     sx={{
                                         fontSize: '1rem',
                                         fontWeight: 500,
-                                        color: theme.palette.secondary[200]
+                                        color: theme.palette.secondary.main
                                     }}
                                 >
                                     We have a strict encryption program set up that no one apart from you can get access to your data. We have it password protected to ensure none other than the authorized user can access your data.
                                 </Typography>
                               </Grid>
                               <Grid>
-                                <Typography sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                <Typography sx={{color: theme.palette.secondary.dark, fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                 Can I use ReBolt with my colleagues?
                                 </Typography>
                             </Grid>
@@ -173,29 +156,15 @@ const Faq = ({ isLoading }) => {
                                     sx={{
                                         fontSize: '1rem',
                                         fontWeight: 500,
-                                        color: theme.palette.secondary[200]
+                                        color: theme.palette.secondary.main
                                     }}
                                 >
                                     We have a collaboration feature where you can share your results with your colleagues.                                </Typography>
                               </Grid>
                               <Grid>
-                                <Typography sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                Account
-                                </Typography>
-                            </Grid>
-                            <Grid className="rebolt-box" item sx={{ mb: 1.25 }}>
                                 <Typography
-                                    sx={{
-                                        fontSize: '1rem',
-                                        fontWeight: 500,
-                                        color: theme.palette.secondary[200]
-                                    }}
-                                >
-                                   Change password, Reset password, Close my account
-                                </Typography>
-                              </Grid>
-                              <Grid>
-                                <Typography sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                style={{color:'#000'}}
+                                sx={{color: theme.palette.secondary.dark, fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                 Feedback
                                 </Typography>
                             </Grid>
@@ -204,7 +173,7 @@ const Faq = ({ isLoading }) => {
                                     sx={{
                                         fontSize: '1rem',
                                         fontWeight: 500,
-                                        color: theme.palette.secondary[200]
+                                        color: theme.palette.secondary.main
                                     }}
                                 >
                                     Want to share your feedback? <br/>
@@ -214,6 +183,9 @@ const Faq = ({ isLoading }) => {
                               </Grid>
 
                         </Grid>
+
+                        </div>
+                        
                     </Box>
                 </CardWrapper>
             )}

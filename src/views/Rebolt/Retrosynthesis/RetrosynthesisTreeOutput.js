@@ -3,6 +3,8 @@ import {BallTriangle} from 'react-loader-spinner'
 import jsPDF from 'jspdf'
 import ArrowBack from '@mui/icons-material/ArrowBack';
 import {useNavigate} from 'react-router-dom';
+import htmlToSvg from "htmlsvg";
+import domtoimage from "dom-to-image"
 //css
 import './Retrotree.css';
 //mui imports
@@ -58,6 +60,17 @@ var arrayData = []
       }
     })
       
+  }
+
+  const printSvg = async () => {
+    const svgConfig = {
+      downloadSvg: true,
+      filename: "htmltosvg",
+    };
+    const htmlElement = document.getElementById("treeDiagram");
+    const svg = await htmlToSvg(htmlElement, svgConfig);
+    //domtoimage.toPng(htmlElement)
+    //console.log(svg);
   }
    
   const getoutput=async()=>{
@@ -188,7 +201,7 @@ var arrayData = []
         <Refresh onClick={reload}/>
       </Fab>
       <Fab aria-label="add" color='secondary'>
-        <Download onClick={printDoc}/>
+        <Download onClick={printSvg}/>
       </Fab>
       
     </CardActions>

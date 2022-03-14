@@ -10,7 +10,6 @@ const icons = {
 
 const pages = {
     id: 'pages',
-    title: 'Rebolt',
     type: 'group',
    
 

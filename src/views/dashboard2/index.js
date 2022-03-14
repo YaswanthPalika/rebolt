@@ -60,7 +60,7 @@ const Dashboard2 = ({ isLoading }) => {
                         </p>
                         <div className='start-button'>
                         <button>
-                            <Link className='butonn' to="/">
+                            <Link className='butonn' to="/Rebolt/RetrosynthesisInput">
                                 Start
                             </Link>
                         </button>

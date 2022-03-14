@@ -27,7 +27,7 @@ import InputLabel from '@mui/material/InputLabel';
 import { getAuth } from "firebase/auth";
 
 import { db, uid } from 'index';
-import { addDoc, collection ,query,where,getDocs} from '@firebase/firestore';
+import { addDoc, collection ,query,where,getDocs,serverTimestamp} from '@firebase/firestore';
 
 
 import axios from 'axios';
@@ -163,6 +163,7 @@ const ShadowBox = ({ shadow }, props) => {
   }
   function submitretroform() {
       addDoc(collection(db, "forward_reaction"), {
+        createdAt : serverTimestamp(),
         expname: expname,
         description:desc,
         target_mol: targetmol,
@@ -316,7 +317,7 @@ const ShadowBox = ({ shadow }, props) => {
       </Dialog>
 
       <Dialog
-        sx={{ '& .MuiDialog-paper': { maxWidth: '100vw', maxHeight: '100vh' } }}
+        sx={{ '& .MuiDialog-paper': { maxWidth: '100vw', height: '100%' } }}
         minWidth="xs"
         open={open2}
       >

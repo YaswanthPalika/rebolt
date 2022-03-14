@@ -50,13 +50,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const Projects = () => {
   // ==================================firebase id token================================================
   const funcc =async () => {
-    const auth = getAuth();
+    const auth = await getAuth();
     const { currentUser } = auth;
 
     const token = await currentUser.getIdToken(/* forceRefresh */ false);
-    console.log(token)
+    //console.log(token)
   }
-  funcc()
+  //funcc()
   // ==================================firebase id token================================================
   var navigate = useNavigate()
   const [did,setDid] = React.useState([])
@@ -115,7 +115,7 @@ const Projects = () => {
   //get projects data
   const q = query(collection(db, 'projects'), where("owner.uid", "==", uid));
 
-  const getprojects = () => {
+  const getprojects = async () => {
     const projects = []
     getDocs(q).then((snapshot) => {
       snapshot.docs.forEach((doc) => { 
@@ -169,12 +169,14 @@ const Projects = () => {
   const renderTable = ()=>{
     return (
       projectsData.map((data, index) => {
+         /*const time = (data.createdAt.toDate()).toISOString()
+        const date = time.substr(0,10)  */
         return (
           <StyledTableRow>
             <StyledTableCell align="left">{index + 1}</StyledTableCell>
             <StyledTableCell align="left">{data.projectname}</StyledTableCell>
             <StyledTableCell align="left">{data.projectdesc}</StyledTableCell>
-            
+            {/*<StyledTableCell align="left">{date}</StyledTableCell> */}
             <StyledTableCell align="center"><Link to={`/Experiments/${data.id}`}>view</Link></StyledTableCell>
             <StyledTableCell align="center"> <IconButton className="icon12"
             onClick={()=> editProject(data.projectname,data.projectdesc,data.id)}><Edit /></IconButton>
@@ -224,6 +226,7 @@ const Projects = () => {
   }, []);
   useEffect(() => {
     getprojects()
+
   }, [])
   return (
     <><grid>
@@ -252,9 +255,9 @@ const Projects = () => {
                   <TableHead>
                     <TableRow>
                       <StyledTableCell >S.No</StyledTableCell>
-                      <StyledTableCell align="left">project name</StyledTableCell>
+                      <StyledTableCell align="left">Project Name</StyledTableCell>
                       <StyledTableCell align="left">Description</StyledTableCell>
-                      <StyledTableCell align="center">view</StyledTableCell>
+                      <StyledTableCell align="center">View</StyledTableCell>
                       <StyledTableCell align="center">Actions</StyledTableCell>
                     </TableRow>
                   </TableHead>
@@ -314,7 +317,7 @@ const Projects = () => {
           <DialogContentText>
             ALERT
           </DialogContentText>
-           <p>Are you sure, all the data will be perementally erased</p>
+           <p>Are you sure, all the data will be permanently erased</p>
         </DialogContent>
         <DialogActions>
           <Button onClick={closeDeleteAlert}>Close</Button>

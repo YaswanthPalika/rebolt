@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-
+import {Link} from 'react-router-dom'
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { Avatar, Box, ButtonBase } from '@mui/material';
@@ -52,10 +52,12 @@ const Header = ({ handleLeftDrawerToggle }) => {
                         <IconMenu2 stroke={1.5} size="1.3rem" />
                     </Avatar>
                 </ButtonBase>
-                <img style={{height:"50px",marginLeft:"10px"}}
-                    src="https://res.cloudinary.com/doaejwdmk/image/upload/v1646156842/ezgif.com-gif-maker_1_grin8b.gif"
-                    alt="img-sks"
-                />
+                <Link to='/Projects'>
+                    <img style={{height:"50px",width:'170px',marginLeft:"10px"}}
+                        src="https://res.cloudinary.com/doaejwdmk/image/upload/v1646156842/ezgif.com-gif-maker_1_grin8b.gif"
+                        alt="img-sks"
+                    />
+                </Link>
             </Box>
 
             {/* header search */}
