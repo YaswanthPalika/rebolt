@@ -165,7 +165,7 @@ const ShadowBox = ({ shadow }, props) => {
       .then(()=>{
         setdesc("")
         alert("experiment submitted succesfully!")
-      })
+        })
       handleclose()
     }
     else{
@@ -223,7 +223,7 @@ const ShadowBox = ({ shadow }, props) => {
         }}
       >
         <Grid container spacing={1}>
-          <Grid item xl={12} xs={12}>
+          <Grid item xl={6} xs={6}>
             <TextField style={{ width: '100%' }} label="Experiment name"
               name="expname"
               onChange={(e) => setexpname(e.target.value)}
@@ -233,7 +233,7 @@ const ShadowBox = ({ shadow }, props) => {
               inputProps={{ style: { fontSize: 15 } }}
             />
           </Grid>
-          <Grid item xl={12} xs={12}>
+          <Grid item xl={6} xs={6}>
             <TextField style={{ width: '100%' }} label="Description(optional)"
               name="expname"
               onChange={(e) => setdesc(e.target.value)}
@@ -261,7 +261,7 @@ const ShadowBox = ({ shadow }, props) => {
             <HiOutlinePencil style={{height:"35px"}} />
             </Button>
           </Grid>
-          <Grid item xl={6} xs={12}>
+          <Grid item xl={6} xs={6} marginTop="10px">
             <FormControl fullWidth label="Select">
               <InputLabel id="demo-simple-select-label">Select Type</InputLabel>
               <Select
@@ -280,18 +280,22 @@ const ShadowBox = ({ shadow }, props) => {
               
             </FormControl>
           </Grid>
-          <Grid item xl={6} xs={12}>
+          <Grid item xl={6} xs={6}>
             <Button  variant="contained" size="large" 
-            onClick={onClickAdvance}
-            style={{ width: '100%' }} variant='outlined'>
+              onClick={onClickAdvance}
+              style={{ width: '100%' ,marginTop:'15px'}} 
+              variant='outlined'>
               {numOfSteps === 0 ? "Advanced Search" : `maximum number of steps : ${numOfSteps}`}
             </Button>
           </Grid>
-          <Grid item xl={6} xs={12}>
-            <Button variant="contained" size="large" style={{ width: '100%' }} onClick={handleopen}>
+          <Grid 
+          container
+          style={{ display: "flex", justifyContent: "center",marginTop:"10px" }}>
+            <Button variant="contained" size="large" style={{ width: '50%' }} onClick={handleopen}>
               Search
             </Button>
           </Grid>
+          
         </Grid>
       </Box>
     </Card>

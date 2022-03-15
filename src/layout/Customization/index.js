@@ -18,6 +18,7 @@ import SubCard from 'ui-component/cards/SubCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from 'store/actions';
 import EarningCard from 'ui-component/cards/Skeleton/EarningCard';
+import ProgressList from './progress'
 
 // concat 'px'
 function valueText(value) {
@@ -121,12 +122,7 @@ const Customization = () => {
                 }}
             >
                 <PerfectScrollbar component="div">
-                    <SubCard title="User Settings">
-                    <EarningCard></EarningCard>
-                    </SubCard>
-                    <SubCard title="Progress" >
-                    <EarningCard></EarningCard>
-                    </SubCard>
+                        <ProgressList />
                 </PerfectScrollbar>
             </Drawer>
         </>

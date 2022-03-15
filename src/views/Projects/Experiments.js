@@ -100,6 +100,7 @@ const Experiments = () => {
         const experiments = []
         await getDocs(q,).then((snapshot) => {
             snapshot.docs.forEach((doc) => { experiments.push({ ...doc.data(),id:doc.id}) });
+            console.log(experiments)
             setexperimentsdata(experiments);
             
         }).catch((err) => console.log(err));

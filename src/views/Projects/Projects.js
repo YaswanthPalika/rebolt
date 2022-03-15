@@ -19,7 +19,7 @@ import './experiment.css'
 //user data imports
 import { db, email, name, uid } from 'index';
 //firebase imports
-import { collection, getDocs,updateDoc, setDoc, deleteDoc, doc, addDoc, serverTimestamp, query, where } from "@firebase/firestore";
+import { collection, getDocs,updateDoc, setDoc, deleteDoc, doc,deleteDocs, addDoc, serverTimestamp, query, where } from "@firebase/firestore";
 import { Link } from "react-router-dom";
 import { gridSpacing } from "store/constant";
 import { getAuth } from "firebase/auth";
@@ -196,6 +196,9 @@ const Projects = () => {
   }
   const deleteData =async () => {
     deleteDoc(doc(db, "projects", did));
+    var project_id = did
+    deleteDoc(doc(db,"retrosynthesis",project_id))
+    .then(console.log("yes deleted aasss"))
     await getprojects()
     setDid(null)
     setDeleteAlert(false)
